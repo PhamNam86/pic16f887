@@ -1,0 +1,11 @@
+ÀÄweek_6
+   ÀÄMAIN  0/150  Ram=1
+      ÃÄ??0??
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄIC_74hc595  0/47  Ram=2
+      ÃÄIC_74HC595_Output  0/25  Ram=0
+      ÀÄ@delay_ms1  0/20  Ram=1

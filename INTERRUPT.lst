@@ -1,0 +1,197 @@
+CCS PCM C Compiler, Version 4.074, 22034               09-Apr-22 23:54
+
+               Filename: INTERRUPT.lst
+
+               ROM used: 129 words (2%)
+                         Largest free fragment is 2048
+               RAM used: 16 (4%) at main() level
+                         19 (5%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   047
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   0A,W
+0009:  MOVWF  20
+000A:  CLRF   0A
+000B:  MOVF   04,W
+000C:  MOVWF  22
+000D:  MOVF   77,W
+000E:  MOVWF  23
+000F:  MOVF   78,W
+0010:  MOVWF  24
+0011:  MOVF   79,W
+0012:  MOVWF  25
+0013:  MOVF   7A,W
+0014:  MOVWF  26
+0015:  MOVF   7B,W
+0016:  MOVWF  27
+0017:  BCF    03.7
+0018:  BCF    03.5
+0019:  BTFSS  0B.4
+001A:  GOTO   01D
+001B:  BTFSC  0B.1
+001C:  GOTO   030
+001D:  MOVF   22,W
+001E:  MOVWF  04
+001F:  MOVF   23,W
+0020:  MOVWF  77
+0021:  MOVF   24,W
+0022:  MOVWF  78
+0023:  MOVF   25,W
+0024:  MOVWF  79
+0025:  MOVF   26,W
+0026:  MOVWF  7A
+0027:  MOVF   27,W
+0028:  MOVWF  7B
+0029:  MOVF   20,W
+002A:  MOVWF  0A
+002B:  SWAPF  21,W
+002C:  MOVWF  03
+002D:  SWAPF  7F,F
+002E:  SWAPF  7F,W
+002F:  RETFIE
+0030:  BCF    0A.3
+0031:  BCF    0A.4
+0032:  GOTO   047
+.................... #include "D:\Proteus 8.8\pic16f887\week_8\INTERRUPT.h" 
+.................... #include <16F887.h> 
+.................... //////// Standard Header file for the PIC16F887 device //////////////// 
+.................... #device PIC16F887 
+.................... #list 
+....................  
+.................... #device adc=8 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES RC                    	//Resistor/Capacitor Osc with CLKOUT 
+.................... #FUSES NOPUT                 	//No Power Up Timer 
+.................... #FUSES MCLR                  	//Master Clear pin enabled 
+.................... #FUSES NOPROTECT             	//Code not protected from reading 
+.................... #FUSES NOCPD                 	//No EE protection 
+.................... #FUSES BROWNOUT              	//Reset when brownout detected 
+.................... #FUSES IESO                  	//Internal External Switch Over mode enabled 
+.................... #FUSES FCMEN                 	//Fail-safe clock monitor enabled 
+.................... #FUSES LVP                   	//Low Voltage Programming on B3(PIC16) or B5(PIC18) 
+.................... #FUSES NODEBUG               	//No Debug mode for ICD 
+.................... #FUSES NOWRT                 	//Program memory not write protected 
+.................... #FUSES BORV40                	//Brownout reset at 4.0V 
+....................  
+.................... #use delay(clock=20000000) 
+0033:  MOVLW  2C
+0034:  MOVWF  04
+0035:  BCF    03.7
+0036:  MOVF   00,W
+0037:  BTFSC  03.2
+0038:  GOTO   046
+0039:  MOVLW  06
+003A:  MOVWF  78
+003B:  CLRF   77
+003C:  DECFSZ 77,F
+003D:  GOTO   03C
+003E:  DECFSZ 78,F
+003F:  GOTO   03B
+0040:  MOVLW  7B
+0041:  MOVWF  77
+0042:  DECFSZ 77,F
+0043:  GOTO   042
+0044:  DECFSZ 00,F
+0045:  GOTO   039
+0046:  RETLW  00
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8) 
+....................  
+....................  
+....................  
+.................... //#include <kongat.h> 
+.................... #define RB 0x06 
+.................... #bit led = RB.6 
+.................... #bit led_int = RB.7 
+.................... #bit bt = RB.2 
+.................... #INT_EXT 
+....................  
+.................... void main() 
+.................... { 
+0047:  CLRF   04
+0048:  BCF    03.7
+0049:  MOVLW  1F
+004A:  ANDWF  03,F
+004B:  BSF    03.5
+004C:  BSF    03.6
+004D:  BSF    07.3
+004E:  MOVLW  08
+004F:  BCF    03.6
+0050:  MOVWF  19
+0051:  MOVLW  02
+0052:  MOVWF  1A
+0053:  MOVLW  A6
+0054:  MOVWF  18
+0055:  MOVLW  90
+0056:  BCF    03.5
+0057:  MOVWF  18
+0058:  BSF    03.5
+0059:  BSF    03.6
+005A:  MOVF   09,W
+005B:  ANDLW  C0
+005C:  MOVWF  09
+005D:  BCF    03.6
+005E:  BCF    1F.4
+005F:  BCF    1F.5
+0060:  MOVLW  00
+0061:  BSF    03.6
+0062:  MOVWF  08
+0063:  BCF    03.5
+0064:  CLRF   07
+0065:  CLRF   08
+0066:  CLRF   09
+.................... set_tris_B(0x0F); 
+0067:  MOVLW  0F
+0068:  BSF    03.5
+0069:  BCF    03.6
+006A:  MOVWF  06
+....................  
+....................  
+....................    while(TRUE) 
+....................    { 
+....................       led = 1; 
+006B:  BCF    03.5
+006C:  BSF    06.6
+....................       delay_ms(200); 
+006D:  MOVLW  C8
+006E:  MOVWF  2C
+006F:  CALL   033
+....................       led = 0; 
+0070:  BCF    06.6
+....................       delay_ms(200); 
+0071:  MOVLW  C8
+0072:  MOVWF  2C
+0073:  CALL   033
+....................       if (bt == 1) 
+0074:  BTFSS  06.2
+0075:  GOTO   07F
+....................          { 
+....................             led_int = !led_int; 
+0076:  MOVLW  80
+0077:  XORWF  06,F
+....................             delay_ms(5000); 
+0078:  MOVLW  14
+0079:  MOVWF  2B
+007A:  MOVLW  FA
+007B:  MOVWF  2C
+007C:  CALL   033
+007D:  DECFSZ 2B,F
+007E:  GOTO   07A
+....................          } 
+....................    } 
+007F:  GOTO   06C
+....................  
+.................... } 
+0080:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FF7   RC NOWDT NOPUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN LVP NODEBUG
+   Word  2: 3FFF   NOWRT BORV40

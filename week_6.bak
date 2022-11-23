@@ -1,0 +1,72 @@
+#include "D:\Proteus 8.8\pic16f887\week_6\week_6.h"
+unsigned char binary_pattern[]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
+
+int i;
+int k;
+#define SHCP_PIN PIN_C0
+#define DS_PIN PIN_C1
+#define STCP_PIN PIN_C2
+void IC_74hc595(unsigned int data) 
+{
+    OUTPUT_LOW(SHCP_PIN);
+    
+    for(k = 0;k < 8; k++)
+    {
+    if((data & 0x80)==0)
+    OUTPUT_LOW(DS_PIN);
+    else
+    OUTPUT_HIGH(DS_PIN);
+    data=data<<1;
+    OUTPUT_HIGH(SHCP_PIN);
+    OUTPUT_LOW(SHCP_PIN);
+    }
+}
+void IC_74HC595_Output()
+{
+    OUTPUT_LOW(SHCP_PIN);
+    delay_us(5);
+    OUTPUT_HIGH(STCP_PIN);
+    OUTPUT_LOW(STCP_PIN);
+}
+void main()
+{
+   SET_TRIS_B(0x00);
+   SET_TRIS_C(0x00);
+   SET_TRIS_D(0x00);
+   OUTPUT_B(0x00);
+   //OUTPUT_C(0x00);
+   OUTPUT_D(0x00);
+ 
+ while(TRUE)
+ { 
+ 
+   output_high(pin_D3);
+   delay_ms(1000);
+   output_low(pin_D3);
+   delay_ms(1000);
+ 
+ delay_ms(50);
+ for(i=0;i<10;i++)
+   {
+         
+         output_b(~binary_pattern[i]);
+         delay_ms(500);  
+        
+       
+        
+   }
+   delay_ms(50);
+  for(i=0;i<10;i++)
+        {
+        
+           IC_74hc595(~binary_pattern[i]); 
+             IC_74HC595_Output();
+             delay_ms(500); 
+        }
+            }
+    
+  
+        
+        
+        
+}

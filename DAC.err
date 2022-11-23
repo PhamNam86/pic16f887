@@ -1,0 +1,9 @@
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 22(19,76): Duplicate #define
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 23(19,34): Duplicate #define
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 24(23,34): Duplicate #define
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 25(18,34): Duplicate #define
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 26(18,34): Duplicate #define
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 27(18,34): Duplicate #define
+>>> Warning 225 "C:\Program Files (x86)\PICC\drivers\lcd.h" Line 28(18,34): Duplicate #define
+      Memory usage:   ROM=6%      RAM=2% - 5%
+      0 Errors,  7 Warnings.
